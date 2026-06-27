@@ -38,6 +38,7 @@ const HERO_BACKGROUND = `linear-gradient(
 
 const BLANK_HOLD_MS = 800
 const CONTENT_DELAY_MS = 1700
+const COUPLE_NAME_IMAGE = "/Details/couple name.png"
 
 const smg: CSSProperties = {
   fontFamily: "'SortsMillGoudy', Georgia, serif",
@@ -46,10 +47,6 @@ const smg: CSSProperties = {
 const hps: CSSProperties = {
   fontFamily: "'HelloParisSans', serif",
 }
-
-const coupleNameFont: React.CSSProperties = {
-  fontFamily: 'var(--font-cheque), serif',
-};
 
 interface AmbientOrb {
   id: number
@@ -335,52 +332,14 @@ export function Hero({ visible = false }: HeroProps) {
             </p>
           </div>
 
-          {/* Groom name */}
+          {/* Couple names */}
           <div style={{ ...fade(220) }} className="mt-4 w-full md:mt-5">
-          <h1
-            className="w-full leading-none"
-            style={{
-              ...hps,
-              fontSize: "clamp(52px, 14vw, 72px)",
-              color: ACCENT,
-              fontWeight: 400,
-              letterSpacing: "0.04em",
-              textTransform: "capitalize",
-              ...coupleNameFont,
-            }}
-          >
-            {groomNickname}
-          </h1>
-          </div>
-
-          {/* and */}
-          <div
-            style={{ ...fade(320) }}
-            className="my-2 flex w-full items-center justify-center gap-2 md:my-3"
-          >
-            <DottedRule compact />
-            <span className="shrink-0 text-[13px] md:text-[16px]" style={{ ...smg, color: TEXT }}>
-              and
-            </span>
-            <DottedRule compact />
-          </div>
-
-          {/* Bride name */}
-          <div style={{ ...fade(420) }} className="w-full">
-          <h1
-            className="w-full leading-none"
-            style={{
-              ...hps,
-              fontSize: "clamp(52px, 14vw, 72px)",
-              color: ACCENT,
-              fontWeight: 400,
-              letterSpacing: "0.04em",
-              textTransform: "capitalize",
-              ...coupleNameFont,
-            }}
-          >
-            {brideNickname}
-          </h1>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={encodeURI(COUPLE_NAME_IMAGE)}
+              alt={`${groomNickname} and ${brideNickname}`}
+              className="mx-auto h-auto w-full max-w-[200px] md:max-w-[270px]"
+            />
           </div>
 
           {/* Together with their families */}
@@ -436,7 +395,7 @@ export function Hero({ visible = false }: HeroProps) {
                   style={{
                     ...hps,
                     fontSize: "clamp(52px, 14vw, 68px)",
-                    color: ACCENT,
+                    color: "#C44F4C",
                   }}
                 >
                   {dateNum}

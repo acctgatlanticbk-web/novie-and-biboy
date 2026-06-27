@@ -9,7 +9,6 @@ interface LoadingScreenProps {
 
 const TEXT = '#909E79';
 const TEXT_DEEP = '#979430';
-const ACCENT = '#F95483';
 const PALETTE = {
   cream: '#F8ECDA',
   creamMid: '#F4DCBB',
@@ -29,12 +28,15 @@ const PALETTE = {
 const PALETTE_COLORS = Object.values(PALETTE);
 const TOTAL_DURATION_MS = 15000;
 
+const COUPLE_NAME_IMAGE = '/Details/couple name.png';
+
 const DECORATION_IMAGES = [
   '/decoration/decoration/left-top-decoration.png',
   '/decoration/decoration/right-top-decoration.png',
   '/decoration/decoration/left-bottom-decoration.png',
   '/decoration/decoration/right-bottom-decoration.png',
   '/decoration/decoration/bottom-center-decoration.png',
+  COUPLE_NAME_IMAGE,
 ] as const;
 
 const BACKGROUND_GRADIENT = `linear-gradient(
@@ -56,10 +58,6 @@ const smg: React.CSSProperties = {
 const hps: React.CSSProperties = {
   fontFamily: "'HelloParisSans', serif",
 };
-const coupleNameFont: React.CSSProperties = {
-  fontFamily: 'var(--font-cheque), serif',
-};
-
 function parseCeremonyDate(dateStr: string) {
   const match = dateStr.match(/(\w+)\s+(\d{1,2}),\s+(\d{4})/);
   return {
@@ -127,19 +125,6 @@ function createSparkParticles(count: number): SparkParticle[] {
   }));
 }
 
-function DottedRule({ compact = false }: { compact?: boolean }) {
-  return (
-    <div
-      className={
-        compact
-          ? 'w-[3.25rem] border-t border-dotted md:w-[4rem]'
-          : 'flex-1 border-t border-dotted'
-      }
-      style={{ borderColor: TEXT_DEEP }}
-    />
-  );
-}
-
 export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
   const [loadPercent, setLoadPercent] = useState(0);
 
@@ -177,8 +162,6 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
     };
   }, [onComplete]);
 
-  const groomNickname = siteConfig.couple.groomNickname;
-  const brideNickname = siteConfig.couple.brideNickname;
   const day = siteConfig.ceremony.day?.toUpperCase() ?? 'SATURDAY';
   const time = siteConfig.ceremony.time ?? '3:30 PM';
   const venue = siteConfig.ceremony.location;
@@ -323,50 +306,14 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
           </p>
         </div>
 
-        {/* Groom name */}
+        {/* Couple names */}
         <div className="mt-4 w-full">
-          <h1
-            className="w-full leading-none"
-            style={{
-              ...coupleNameFont,
-              fontSize: 'clamp(52px, 14vw, 72px)',
-              color: ACCENT,
-              fontWeight: 400,
-              letterSpacing: '0.04em',
-              textTransform: 'capitalize',
-            }}
-          >
-            {groomNickname}
-          </h1>
-        </div>
-
-        {/* and */}
-        <div className="my-2 flex w-full items-center justify-center gap-2 md:my-3">
-          <DottedRule compact />
-          <span
-            className="shrink-0 text-[13px] md:text-[16px]"
-            style={{ ...smg, color: TEXT }}
-          >
-            and
-          </span>
-          <DottedRule compact />
-        </div>
-
-        {/* Bride name */}
-        <div className="w-full">
-          <h1
-            className="w-full leading-none"
-            style={{
-              ...coupleNameFont,
-              fontSize: 'clamp(52px, 14vw, 72px)',
-              color: ACCENT,
-              fontWeight: 400,
-              letterSpacing: '0.04em',
-              textTransform: 'capitalize',
-            }}
-          >
-            {brideNickname}
-          </h1>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={encodeURI(COUPLE_NAME_IMAGE)}
+            alt={`${siteConfig.couple.groomNickname} and ${siteConfig.couple.brideNickname}`}
+            className="mx-auto h-auto w-full max-w-[200px] md:max-w-[270px]"
+          />
         </div>
 
         {/* Together with their families */}
@@ -425,7 +372,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
                 style={{
                   ...hps,
                   fontSize: 'clamp(52px, 14vw, 68px)',
-                  color: ACCENT,
+                  color: '#C44F4C',
                 }}
               >
                 {dateNum}

@@ -65,31 +65,97 @@ const ct = {
   reminderBody: "text-xs sm:text-sm md:text-base lg:text-lg",
 } as const
 
-const attireGuide = {
-  principalSponsors: {
-    image: "/attireGuide/principalSponsors-new.png",
-    ladies: ["#EDD7B3", "#DCA449", "#EDCCA3"],
-    gentlemen: ["#F4D6A6", "#ECC99A", "#F9EBD7"],
+const weddingMotif = "Spring Garden"
+const ATTIRE_IMAGE_FRAME = { width: 560, height: 445 } as const
+
+type AttireRole = {
+  title: string
+  image: string
+  alt: string
+  descriptions: readonly { label: string; text: string }[]
+  colors: readonly string[]
+  showPalette?: boolean
+}
+
+const attireRoles: AttireRole[] = [
+  {
+    title: "Bride and Groom's Presentor",
+    image: "/attireGuide/Bride and Grooms Presentor.png",
+    alt: "Bride and groom's presentor attire",
+    descriptions: [
+      { label: "Women", text: "Powder Blue" },
+      { label: "Men", text: "Black Suit, White Polo and Powder Blue Tie" },
+    ],
+    colors: ["#C2DAF0"],
   },
-  secondarySponsors: {
-    image: "/attireGuide/secondarySponsors-new.png",
-    ladies: ["#F8AFAE", "#FCA77F", "#FC776A"],
-    gentlemen: ["#E0AC7D", "#D6C4B5", "#EFD0AB"],
+  {
+    title: "Principal Sponsors",
+    image: "/attireGuide/Principal Sponsors.png",
+    alt: "Principal sponsor attire",
+    descriptions: [
+      { label: "Women", text: "Light Brown Soft Neutral" },
+      { label: "Men", text: "Black Suit, White Polo and Light Brown Bow Tie" },
+    ],
+    colors: ["#EED2AB", "#E6C093"],
   },
-  groomsmen: {
-    image: "/attireGuide/groomsmen-new.png",
-    colors: ["#BDBF86", "#979430", "#909E79"],
+  {
+    title: "Matron of Honor & Best Man",
+    image: "/attireGuide/matron of Honor & Best man.png",
+    alt: "Matron of honor and best man attire",
+    descriptions: [
+      { label: "Women", text: "Pastel Pink" },
+      { label: "Men", text: "Black Suit, White Polo and Pastel Pink Bow Tie" },
+    ],
+    colors: ["#FDC4C2"],
   },
-  bridesmaids: {
-    image: "/attireGuide/bridesmaids-new.png",
-    colors: ["#FBAFB5", "#F95483", "#FB6A67", "#FC7406", "#FCB484", "#FDD461", "#D0B2D2"],
+  {
+    title: "Secondary Sponsors",
+    image: "/attireGuide/secondary sponsors.png",
+    alt: "Secondary sponsor attire",
+    descriptions: [
+      { label: "Women", text: "Pastel Yellow" },
+      { label: "Men", text: "Black Suit, White Polo and Pastel Pink Bow Tie" },
+    ],
+    colors: ["#FEEB9B"],
   },
-  flowerGirlsRingBearers: {
-    image: "/attireGuide/flowerGirlsRingBearers-new.png",
-    flowerGirls: ["#F8ECDA", "#F4DCBB"],
-    ringBearers: ["#F4DBB4", "#EFC796"],
+  {
+    title: "Bearer (Coin, Flower, Bible)",
+    image: "/attireGuide/Bearer.png",
+    alt: "Coin, flower, and bible bearer attire",
+    descriptions: [
+      { label: "Girl", text: "Pastel Green" },
+      { label: "Boy", text: "Black Suit, White Polo and Pastel Green Bow Tie" },
+    ],
+    colors: ["#C6DD98"],
   },
-} as const
+  {
+    title: "Bridesmaids",
+    image: "/attireGuide/Bridesmaids.png",
+    alt: "Bridesmaids attire",
+    descriptions: [{ label: "", text: "Mixed of Spring Garden (Happy)" }],
+    colors: ["#FCC1C0", "#FCC49E", "#FEE99A", "#C7DB92", "#C1DAF0", "#DBC9E8"],
+    showPalette: false,
+  },
+  {
+    title: "Groomsmen",
+    image: "/attireGuide/Groomsmen.png",
+    alt: "Groomsmen attire",
+    descriptions: [{ label: "", text: "Black suit, White Polo, Mixed of Spring Garden Bow Ties" }],
+    colors: ["#FCC1C0", "#FCC49E", "#FEE99A", "#C7DB92", "#C1DAF0", "#DBC9E8"],
+  },
+  {
+    title: "Guests",
+    image: "/attireGuide/Guests.png",
+    alt: "Guest attire",
+    descriptions: [
+      {
+        label: "",
+        text: "You may wear NEUTRAL LIGHT BROWN or other light and soft neutral tones.",
+      },
+    ],
+    colors: ["#EDD2AE", "#E7C59A", "#E0B88B", "#F7E4C5"],
+  },
+]
 
 function ColorPalette({ colors }: { colors: readonly string[] }) {
   const widthClass = colors.length > 4 ? "max-w-md" : "max-w-xs sm:max-w-sm"
@@ -112,28 +178,41 @@ function ColorPalette({ colors }: { colors: readonly string[] }) {
   )
 }
 
-function AttirePaletteGroup({
-  label,
-  colors,
-}: {
-  label: string
-  colors: readonly string[]
-}) {
-  return (
-    <div className="space-y-2 sm:space-y-2.5">
-      <p
-        className={`${cinzel.className} text-center ${ct.labelSm} uppercase tracking-[0.16em] font-semibold`}
-        style={{ color: detailText.label }}
-      >
-        {label}
-      </p>
-      <ColorPalette colors={colors} />
-    </div>
-  )
-}
 
 function AttirePaletteSection({ colors }: { colors: readonly string[] }) {
   return <ColorPalette colors={colors} />
+}
+
+function AttireDescriptions({
+  descriptions,
+}: {
+  descriptions: readonly { label: string; text: string }[]
+}) {
+  return (
+    <div className="mb-4 space-y-2 sm:mb-5 sm:space-y-2.5">
+      {descriptions.map(({ label, text }) => (
+        <p
+          key={`${label}-${text}`}
+          className={`${ct.body} text-center font-[family-name:var(--font-crimson)] leading-relaxed`}
+          style={{ color: detailText.body }}
+        >
+          {label ? (
+            <>
+              <span
+                className={`${cinzel.className} ${ct.labelSm} font-semibold uppercase tracking-[0.14em]`}
+                style={{ color: detailText.label }}
+              >
+                {label}:{" "}
+              </span>
+              {text}
+            </>
+          ) : (
+            text
+          )}
+        </p>
+      ))}
+    </div>
+  )
 }
 
 interface AttireParticle {
@@ -263,18 +342,23 @@ function AttireCard({
   children: ReactNode
 }) {
   return (
-    <div className="relative group">
+    <div className="relative mx-auto max-w-[560px] group">
       <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-motif-silver/25 via-motif-accent/5 to-transparent opacity-0 blur-lg transition-opacity duration-500 group-hover:opacity-100" />
       <div className="relative overflow-hidden rounded-xl border border-motif-deep/20 bg-motif-cream shadow-[0_16px_40px_rgba(0,0,0,0.14)] transition-all duration-300 hover:border-motif-deep/50 hover:shadow-[0_20px_48px_rgba(0,0,0,0.2)] sm:rounded-2xl">
 
-        <div className="relative w-full aspect-[2176/1741] overflow-hidden bg-motif-cream">
+        <div
+          className="relative w-full overflow-hidden bg-motif-cream"
+          style={{
+            aspectRatio: `${ATTIRE_IMAGE_FRAME.width} / ${ATTIRE_IMAGE_FRAME.height}`,
+          }}
+        >
           <AttireImageParticles colors={particleColors} />
           <Image
             src={image}
             alt={alt}
             fill
-            className="relative z-[1] object-cover object-center transition-transform duration-700 group-hover:scale-[1.02]"
-            sizes="(max-width: 1024px) 100vw, 1024px"
+            className="relative z-[1] object-contain object-center transition-transform duration-700 group-hover:scale-[1.01]"
+            sizes="560px"
           />
           <div className="absolute inset-x-0 bottom-0 z-[2] bg-gradient-to-t from-[#2a2520]/72 via-[#2a2520]/35 to-transparent px-5 pb-5 pt-16 sm:px-8 sm:pb-6 sm:pt-20">
             <div className="mx-auto flex max-w-lg flex-col items-center gap-2">
@@ -627,7 +711,7 @@ export function Details() {
 
       </div>
 
-      {/* Attire Guidelines */}
+      {/* Our Wedding Motif */}
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 details-container-inner">
         {/* Section Header */}
         <div className="text-center mb-8 sm:mb-10 md:mb-12">
@@ -640,14 +724,14 @@ export function Details() {
             className={`${cinzel.className} ${ct.sectionTitle} uppercase tracking-[0.2em] font-semibold leading-tight`}
             style={{ color: detailText.heading }}
           >
-            Attire Guidelines
+            Our Wedding Motif
           </h3>
           <div className="flex justify-center mt-3 sm:mt-4 mb-3 sm:mb-4">
-            {/* <span
+            <span
               className={`${cinzel.className} inline-flex items-center gap-2 px-5 py-1.5 sm:py-2 rounded-full bg-motif-deep text-motif-cream text-[10px] sm:text-xs tracking-[0.22em] uppercase font-semibold shadow-md`}
             >
-              {siteConfig.dressCode.theme}
-            </span> */}
+              {weddingMotif}
+            </span>
           </div>
           <p className={`${ct.bodyLg} font-normal leading-relaxed`} style={{ ...bodyFont, color: detailText.body }}>
             Please dress according to the guidelines below.
@@ -656,69 +740,18 @@ export function Details() {
 
         {/* Attire cards */}
         <div className="space-y-6 sm:space-y-8 md:space-y-10 mb-6 sm:mb-8 md:mb-10">
-
-          <AttireCard
-            title="Principal Sponsors"
-            image={attireGuide.principalSponsors.image}
-            alt="Principal sponsor attire"
-            particleColors={[
-              ...attireGuide.principalSponsors.ladies,
-              ...attireGuide.principalSponsors.gentlemen,
-            ]}
-          >
-            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6">
-              <AttirePaletteGroup label="Ladies" colors={attireGuide.principalSponsors.ladies} />
-              <AttirePaletteGroup label="Gentlemen" colors={attireGuide.principalSponsors.gentlemen} />
-            </div>
-          </AttireCard>
-
-          <AttireCard
-            title="Secondary Sponsors"
-            image={attireGuide.secondarySponsors.image}
-            alt="Secondary sponsor attire"
-            particleColors={[
-              ...attireGuide.secondarySponsors.ladies,
-              ...attireGuide.secondarySponsors.gentlemen,
-            ]}
-          >
-            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6">
-              <AttirePaletteGroup label="Ladies" colors={attireGuide.secondarySponsors.ladies} />
-              <AttirePaletteGroup label="Gentlemen" colors={attireGuide.secondarySponsors.gentlemen} />
-            </div>
-          </AttireCard>
-
-          <AttireCard
-            title="Groomsmen"
-            image={attireGuide.groomsmen.image}
-            alt="Groomsmen attire"
-            particleColors={attireGuide.groomsmen.colors}
-          >
-            <AttirePaletteSection colors={attireGuide.groomsmen.colors} />
-          </AttireCard>
-
-          <AttireCard
-            title="Bridesmaids"
-            image={attireGuide.bridesmaids.image}
-            alt="Bridesmaids attire"
-            particleColors={attireGuide.bridesmaids.colors}
-          >
-            <AttirePaletteSection colors={attireGuide.bridesmaids.colors} />
-          </AttireCard>
-
-          <AttireCard
-            title="Flower Girls / Ring Bearers"
-            image={attireGuide.flowerGirlsRingBearers.image}
-            alt="Flower girls and ring bearers attire"
-            particleColors={[
-              ...attireGuide.flowerGirlsRingBearers.flowerGirls,
-              ...attireGuide.flowerGirlsRingBearers.ringBearers,
-            ]}
-          >
-            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6">
-              <AttirePaletteGroup label="Flower Girls" colors={attireGuide.flowerGirlsRingBearers.flowerGirls} />
-              <AttirePaletteGroup label="Ring Bearers" colors={attireGuide.flowerGirlsRingBearers.ringBearers} />
-            </div>
-          </AttireCard>
+          {attireRoles.map((role) => (
+            <AttireCard
+              key={role.title}
+              title={role.title}
+              image={role.image}
+              alt={role.alt}
+              particleColors={role.colors}
+            >
+              <AttireDescriptions descriptions={role.descriptions} />
+              {role.showPalette !== false && <AttirePaletteSection colors={role.colors} />}
+            </AttireCard>
+          ))}
         </div>
 
         {/* Dress code restrictions */}
