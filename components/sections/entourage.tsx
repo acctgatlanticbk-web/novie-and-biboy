@@ -261,8 +261,7 @@ export function Entourage() {
     return grouped
   }, [entourage])
 
-  const hasParents =
-    (grouped["Parents of the Groom"]?.length ?? 0) > 0 || (grouped["Parents of the Bride"]?.length ?? 0) > 0
+  const hasTheCouple = (grouped["The Couple"]?.length ?? 0) > 0
 
   // Helper component for elegant section titles (category labels)
   const SectionTitle = ({
@@ -514,13 +513,14 @@ export function Entourage() {
                 if (members.length === 0) return null
                 if (HIDDEN_ROLE_CATEGORIES.has(category)) return null
 
-                // Render OFFICIATING MINISTER directly above Principal Sponsors (in Parents block)
-                if (category === "OFFICIATING MINISTER" && hasParents) return null
+                // Render OFFICIATING MINISTER at the top of The Couple block
+                if (category === "OFFICIATING MINISTER" && hasTheCouple) return null
 
                 // Special handling for The Couple - display Bride and Groom side by side
                 if (category === "The Couple") {
                    const groom = members.find(m => m.roleTitle?.toLowerCase().includes('groom'))
                   const bride = members.find(m => m.roleTitle?.toLowerCase().includes('bride'))
+                  const officiating = grouped["OFFICIATING MINISTER"] || []
                   
                   return (
                     <div key={category}>
@@ -528,6 +528,18 @@ export function Entourage() {
                         <div className="flex justify-center py-2 sm:py-2.5 md:py-3 mb-2 sm:mb-2.5 md:mb-3">
                           <div className="w-full max-w-md h-px" style={{ background: 'linear-gradient(to right, transparent, color-mix(in srgb, var(--color-motif-medium) 31%, transparent), transparent)' }}></div>
                         </div>
+                      )}
+                      {officiating.length > 0 && (
+                        <TwoColumnLayout singleTitle="OFFICIATING MINISTER" centerContent={true}>
+                          {officiating.map((member, idx) => (
+                            <div
+                              key={`officiating-${idx}-${member.name}`}
+                              className="col-span-2 flex justify-center min-w-0 overflow-hidden px-0.5 sm:px-1"
+                            >
+                              <NameItem member={member} align="center" showRole={false} />
+                            </div>
+                          ))}
+                        </TwoColumnLayout>
                       )}
                       <TwoColumnLayout singleTitle="The Couple" centerContent={true}>
                         <div className="px-0.5 sm:px-1 md:px-1.5 min-w-0 overflow-hidden">
@@ -569,7 +581,7 @@ export function Entourage() {
                             <div className="w-full max-w-md h-px" style={{ background: 'linear-gradient(to right, transparent, color-mix(in srgb, var(--color-motif-medium) 31%, transparent), transparent)' }}></div>
                           </div>
                         )}
-                        <TwoColumnLayout leftTitle="Groom’s Presentator" rightTitle="Bride’s Presentator">
+                        <TwoColumnLayout leftTitle="Parents of the Groom" rightTitle="Parents of the Bride">
                           {(() => {
                             const leftArr = sortParents(parentsGroom)
                             const rightArr = sortParents(parentsBride)
@@ -592,26 +604,6 @@ export function Entourage() {
                             return rows
                           })()}
                         </TwoColumnLayout>
-                        
-                        {/* Officiating Minister section - displayed above Principal Sponsors */}
-                        {(() => {
-                          const officiating = grouped["OFFICIATING MINISTER"] || []
-                          if (officiating.length === 0) return null
-                          return (
-                            <div key="OfficiatingMinisterBeforeSponsors" className="mt-4 sm:mt-5 md:mt-6">
-                              <TwoColumnLayout singleTitle="OFFICIATING MINISTER" centerContent={true}>
-                                {officiating.map((member, idx) => (
-                                  <div
-                                    key={`officiating-${idx}-${member.name}`}
-                                    className="col-span-2 flex justify-center min-w-0 overflow-hidden px-0.5 sm:px-1"
-                                  >
-                                    <NameItem member={member} align="center" showRole={false} />
-                                  </div>
-                                ))}
-                              </TwoColumnLayout>
-                            </div>
-                          )
-                        })()}
 
                         {/* Principal Sponsors section - displayed after Parents */}
                         {sponsors.length > 0 && (
@@ -721,7 +713,7 @@ export function Entourage() {
                             <div className="w-full max-w-md h-px" style={{ background: 'linear-gradient(to right, transparent, color-mix(in srgb, var(--color-motif-medium) 31%, transparent), transparent)' }}></div>
                           </div>
                         )}
-                        <TwoColumnLayout leftTitle="Best Men" rightTitle="Matron of Honor ">
+                        <TwoColumnLayout leftTitle="Best Men" rightTitle="Maid of Honor">
                           {(() => {
                             const maxLen = Math.max(bestMan.length, maidOfHonor.length)
                             const rows = []

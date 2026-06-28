@@ -13,16 +13,16 @@ export const siteConfig = {
     backgroundMusic:"/background_music/Dalangin by Earl Agustin (Lyrics).mp3"
   },
   googleAPI:{
-    messageForm: "https://docs.google.com/forms/d/e/1FAIpQLScwEUSUyxUUWQDHIW738kciHPBA_lRMEas0X4rN44dFuv6PmQ/formResponse",   //done
-    message: "https://script.google.com/macros/s/AKfycbzax4GyDyuGxF6Fil8cqOf_NewF3nDa9DB3ohjaLZtl_72Y-JoTMPSVD0xtyFAGwEde8w/exec",  //done
-    guestList: "https://script.google.com/macros/s/AKfycbwHCI36g4hLkXU2j5uBM1j4bZL0xbj-G05TDnpW8wauqIbWLBM0Ux68p9z8dO1lO-KUgA/exec",  //done
-    guestRequest: "https://script.google.com/macros/s/AKfycbzY8I6C6q-eeSudCzn4nY5p05uI3f6WGhLX3ac86kUymFdan9llMZP6AJ9XrEx9Inl0Rw/exec",   //done
-    entourage: "https://script.google.com/macros/s/AKfycbyS5qPMqQK1P84VkKAkau4uZYq5Zg8jn3bs8uEtXoJiNb8t9-FjjS8p9qjSI_M2iBLISQ/exec",  //done
-    sponsors: "https://script.google.com/macros/s/AKfycbz2eZNkWej2bIxuNrABblq9s229LC7mdoGFHloMFFekvm6CwgilOb3_Bj56afR2Yi9VFg/exec",  //done 
-    proposalResponses: "https://script.google.com/macros/s/AKfycbzgs8_Ima4AnkkEGskBOBf3nk290mmzKTeVSYRIikfEalpmdcrElYR1mUX2Wt-JSZEQYA/exec", // uses entourage script with action: proposal
-    weddingDetails: "https://script.google.com/macros/s/AKfycbzv4ZrGK9yO6fLZQMhxaVnZ2N6on2tRbuPqxqit5wa-ywsXnuySZbhAkHRcPeHQceqOIw/exec",   //done
+    messageForm: "https://docs.google.com/forms/d/e/1FAIpQLSe8YjsI90KooCoh91eImnlIJINmJlTINKe6sT_PDPTdQPociA/formResponse",   //done
+    message: "https://script.google.com/macros/s/AKfycbzEyDgQRlNjVdMRbRC9TqvFplF89i3WK629hSNeddIuATn_cUxTASxHjsWoK9CRemOX/exec",  //done
+    guestList: "https://script.google.com/macros/s/AKfycby7rjJ24ySTI0GYQ4TrpunH4hXP554kdvGS7EimLu2l__rC_xOC16BD-GZ4MkDvrEjI/exec",  //done
+    guestRequest: "https://script.google.com/macros/s/AKfycbwQiKGI4ZHOQFnRwwUB7Mts9xl5tnjAi0Di3ul5Ze15NWWX6Z50kfO2p66SD4XwPCjV/exec",   //done
+    entourage: "https://script.google.com/macros/s/AKfycbyExxCHjbIw0u2adbfCBhI5oZCZPWB1xvFmc_8zkwW8rxfrtkVFi0Z6R-Qj3nuA_WbX/exec",  //done
+    sponsors: "https://script.google.com/macros/s/AKfycby6VVl65IEKS1rl8Pxsb61U5GkdYQe5kH8Nf758MGUvL4fxwjpxrZb5XZHVF9GpaKDN/exec",  //done 
+    proposalResponses: "https://script.google.com/macros/s/AKfycbzuix-_WHHmBA6XzlrGaAp1F8hcmP5sCorkt5z3AGeInA_QD-uhWrncl-_6HSNB7CE/exec", // uses entourage script with action: proposal
+    weddingDetails: "https://script.google.com/macros/s/AKfycbw34sfem9GJ4gSK69RDCh18UUOHrJ__1PbNkALOe3_w-GyQOQV6XSXRs-8usj_H76TK/exec",   //done
 ////google share 
-    googleShare: "https://docs.google.com/spreadsheets/d/1MXqoVM4S4hxyaAu8SR4SrPD7xIbWH_1nbufJiMah26s/edit?usp=sharing", 
+    googleShare: "https://docs.google.com/spreadsheets/d/1HPr8lpSosM7DQUhCF3VPASiUCnmgVvj-kgGT2sIo1mk/edit?usp=sharing", 
   },
   wedding: {
     date: "December 5, 2026",
@@ -141,7 +141,7 @@ Now, as they prepare to say yes before God and the people they love most, Cather
   },
   snapShare: {
     googleDriveLink:
-      "https://drive.google.com/drive/folders/1fH_NKSGFyW1DupwtElpS-cZIldXJ3280?usp=sharing",
+      "https://drive.google.com/drive/folders/1ToXLXDOEnif_ZGdRbSf6KrIhBAC7S5hM?usp=sharing",
     albumQR: "/QR/AlbumQR.png",
     hashtag: ["#NovieAndBiboyWedding"],
     instructions: "Please scan this QR Code and upload the photos and videos you have taken during our wedding reception. We are delighted to see your snaps too!",
