@@ -263,13 +263,13 @@ export function SnapShare() {
               </h4>
               <div className="grid grid-cols-2 gap-2 sm:gap-3 w-full min-w-0">
                 <div className="relative aspect-square rounded-xl overflow-hidden border-2 border-motif-deep/20 shadow-sm">
-                  <Image src="/mobile-background/couple (8).webp" alt="Wedding moment 1" fill className="object-cover" style={{ imageOrientation: "from-image" }} />
+                  <Image src="/mobile-background/couple (8).png" alt="Wedding moment 1" fill className="object-cover" style={{ imageOrientation: "from-image" }} />
                 </div>
                 <div className="relative aspect-square rounded-xl overflow-hidden border-2 border-motif-deep/20 shadow-sm">
-                  <Image src="/mobile-background/couple (3).webp" alt="Wedding moment 2" fill className="object-cover" style={{ imageOrientation: "from-image" }} />
+                  <Image src="/mobile-background/couple (3).png" alt="Wedding moment 2" fill className="object-cover" style={{ imageOrientation: "from-image" }} />
                 </div>
                 <div className="relative col-span-2 aspect-[3/2] rounded-xl overflow-hidden border-2 border-motif-deep/20 shadow-sm">
-                  <Image src="/desktop-background/couple (2).webp" alt="Wedding moment 3" fill className="object-cover" />
+                  <Image src="/desktop-background/couple (1).png" alt="Wedding moment 3" fill className="object-cover" />
                 </div>
               </div>
               <p className={`${ct.body} text-center leading-relaxed`} style={{ ...bodyFont, color: palette.body }}>
