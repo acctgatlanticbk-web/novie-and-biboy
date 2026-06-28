@@ -324,7 +324,7 @@ export function Messages() {
 
   return (
     <Section id="messages" className="relative overflow-hidden">
-      <div className="absolute left-0 bottom-0 z-0 pointer-events-none">
+      {/* <div className="absolute left-0 bottom-0 z-0 pointer-events-none">
         <Image
           src="/decoration/flower-decoration-left-bottom-corner2.png"
           alt=""
@@ -334,8 +334,8 @@ export function Messages() {
           priority={false}
           style={{ filter: DECO_FILTER }}
         />
-      </div>
-      <div className="absolute right-0 bottom-0 z-0 pointer-events-none">
+      </div> */}
+      {/* <div className="absolute right-0 bottom-0 z-0 pointer-events-none">
         <Image
           src="/decoration/flower-decoration-left-bottom-corner2.png"
           alt=""
@@ -345,7 +345,7 @@ export function Messages() {
           priority={false}
           style={{ filter: DECO_FILTER }}
         />
-      </div>
+      </div> */}
 
       <div className="relative z-10 max-w-6xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
         {/* Header */}

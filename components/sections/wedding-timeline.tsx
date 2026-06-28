@@ -127,7 +127,7 @@ export function WeddingTimeline() {
       />
 
       {/* Corner floral decoration - white */}
-      <div className="absolute inset-0 pointer-events-none z-[1]">
+      {/* <div className="absolute inset-0 pointer-events-none z-[1]">
         <CloudinaryImage
           src="/decoration/flower-decoration-left-bottom-corner2.png"
           alt=""
@@ -164,7 +164,7 @@ export function WeddingTimeline() {
           style={{ transform: "scaleX(-1)", filter: DECO_FILTER_WHITE }}
           priority={false}
         />
-      </div>
+      </div> */}
 
       {/* Header */}
       <div className="relative z-10 text-center mb-8 sm:mb-10 md:mb-12 px-3 sm:px-4">
