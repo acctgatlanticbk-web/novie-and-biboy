@@ -1,6 +1,7 @@
 "use client"
 
-import { useState, useEffect, useCallback, useMemo, useRef, useLayoutEffect, type CSSProperties } from "react"
+import { Suspense, useState, useEffect, useCallback, useMemo, useRef, useLayoutEffect, type CSSProperties } from "react"
+import dynamic from "next/dynamic"
 import Link from "next/link"
 import Image from "next/image"
 import { motion, AnimatePresence } from "motion/react"
@@ -17,29 +18,13 @@ import { parseWeddingDate } from "@/lib/wedding-date"
 import { siteConfig as defaultSiteConfig } from "@/content/site"
 import type { ProposalRole, ProposalResponse } from "@/lib/proposal-types"
 
+const Silk = dynamic(() => import("@/components/silk"), { ssr: false })
+
 const TEXT = "var(--color-motif-medium)"
 const TEXT_DEEP = "var(--color-motif-medium)"
 const ACCENT = "var(--color-motif-accent)"
-const PALETTE_COLORS = [
-  "var(--color-motif-cream)",
-  "var(--color-motif-silver)",
-  "var(--color-motif-soft)",
-  "var(--color-motif-accent)",
-  "var(--color-motif-yellow)",
-  "var(--color-motif-medium)",
-] as const
 
-const PROPOSAL_BACKGROUND = `linear-gradient(
-  165deg,
-  var(--color-motif-cream) 0%,
-  color-mix(in srgb, var(--color-motif-cream) 88%, white) 22%,
-  #FFFFFF 48%,
-  color-mix(in srgb, var(--color-motif-soft) 16%, transparent) 74%,
-  color-mix(in srgb, var(--color-motif-yellow) 12%, transparent) 100%
-)`
-
-const CORNER_DECO_CLASS =
-  "block h-auto w-auto max-w-[130px] sm:max-w-[160px] md:max-w-[210px] lg:max-w-[260px]"
+const COUPLE_NAME_IMAGE = "/Details/coupleName.png"
 
 const smg: CSSProperties = {
   fontFamily: "'SortsMillGoudy', Georgia, serif",
@@ -63,64 +48,6 @@ const proposalHonor: CSSProperties = {
   fontWeight: 500,
 }
 
-interface AmbientOrb {
-  id: number
-  x: number
-  y: number
-  size: number
-  color: string
-  opacity: number
-  duration: number
-  delay: number
-  driftX: number
-  driftY: number
-}
-
-interface SparkParticle {
-  id: number
-  x: number
-  y: number
-  size: number
-  color: string
-  opacity: number
-  duration: number
-  delay: number
-  driftX: number
-  driftY: number
-  twinkleDuration: number
-}
-
-function createAmbientOrbs(count: number): AmbientOrb[] {
-  return Array.from({ length: count }, (_, id) => ({
-    id,
-    x: 4 + Math.random() * 92,
-    y: 6 + Math.random() * 88,
-    size: 60 + Math.random() * 100,
-    color: PALETTE_COLORS[Math.floor(Math.random() * PALETTE_COLORS.length)],
-    opacity: 0.06 + Math.random() * 0.09,
-    duration: 16 + Math.random() * 14,
-    delay: Math.random() * 6,
-    driftX: -14 + Math.random() * 28,
-    driftY: -12 + Math.random() * 24,
-  }))
-}
-
-function createSparkParticles(count: number): SparkParticle[] {
-  return Array.from({ length: count }, (_, id) => ({
-    id,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    size: 1.5 + Math.random() * 3,
-    color: PALETTE_COLORS[Math.floor(Math.random() * PALETTE_COLORS.length)],
-    opacity: 0.18 + Math.random() * 0.22,
-    duration: 12 + Math.random() * 16,
-    delay: Math.random() * 10,
-    driftX: -10 + Math.random() * 20,
-    driftY: -12 + Math.random() * 24,
-    twinkleDuration: 3 + Math.random() * 4,
-  }))
-}
-
 function DottedRule({ compact = false }: { compact?: boolean }) {
   return (
     <div
@@ -131,96 +58,6 @@ function DottedRule({ compact = false }: { compact?: boolean }) {
       }
       style={{ borderColor: TEXT_DEEP }}
     />
-  )
-}
-
-function ProposalBackdrop({ decorVisible }: { decorVisible: boolean }) {
-  const ambientOrbs = useMemo(() => createAmbientOrbs(5), [])
-  const sparkParticles = useMemo(() => createSparkParticles(16), [])
-  const decorClass = decorVisible ? " decor-visible" : ""
-
-  return (
-    <>
-      <div className="proposal-base pointer-events-none absolute inset-0 z-0" aria-hidden />
-      <div className="proposal-wash pointer-events-none absolute inset-0 z-0" aria-hidden />
-
-      <div className="particle-field particle-field-visible pointer-events-none absolute inset-0 z-[1]" aria-hidden>
-        <div className="particle-gradient" />
-        {ambientOrbs.map((orb) => (
-          <span
-            key={`orb-${orb.id}`}
-            className="particle-orb"
-            style={{
-              left: `${orb.x}%`,
-              top: `${orb.y}%`,
-              width: orb.size,
-              height: orb.size,
-              backgroundColor: orb.color,
-              opacity: orb.opacity,
-              animationDuration: `${orb.duration}s`,
-              animationDelay: `${orb.delay}s`,
-              ["--drift-x" as string]: `${orb.driftX}px`,
-              ["--drift-y" as string]: `${orb.driftY}px`,
-            }}
-          />
-        ))}
-        {sparkParticles.map((particle) => (
-          <span
-            key={`spark-${particle.id}`}
-            className="particle-spark"
-            style={{
-              left: `${particle.x}%`,
-              top: `${particle.y}%`,
-              width: particle.size,
-              height: particle.size,
-              backgroundColor: particle.color,
-              color: particle.color,
-              opacity: particle.opacity,
-              animationDuration: `${particle.duration}s, ${particle.twinkleDuration}s`,
-              animationDelay: `${particle.delay}s, ${particle.delay * 0.4}s`,
-              ["--drift-x" as string]: `${particle.driftX}px`,
-              ["--drift-y" as string]: `${particle.driftY}px`,
-            }}
-          />
-        ))}
-      </div>
-
-      <div
-        className={`decor-corner decor-top-left pointer-events-none absolute left-0 top-0 z-[2]${decorClass}`}
-        style={decorVisible ? undefined : { opacity: 0, visibility: "hidden" }}
-      >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/decoration/decoration/left-top-decoration.png" alt="" className={CORNER_DECO_CLASS} />
-      </div>
-      <div
-        className={`decor-corner decor-top-right pointer-events-none absolute right-0 top-0 z-[2]${decorClass}`}
-        style={decorVisible ? undefined : { opacity: 0, visibility: "hidden" }}
-      >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/decoration/decoration/right-top-decoration.png" alt="" className={CORNER_DECO_CLASS} />
-      </div>
-      <div
-        className={`decor-corner decor-bottom-left pointer-events-none absolute bottom-0 left-0 z-[2]${decorClass}`}
-        style={decorVisible ? undefined : { opacity: 0, visibility: "hidden" }}
-      >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/decoration/decoration/left-bottom-decoration.png" alt="" className={CORNER_DECO_CLASS} />
-      </div>
-      <div
-        className={`decor-corner decor-bottom-right pointer-events-none absolute bottom-0 right-0 z-[2]${decorClass}`}
-        style={decorVisible ? undefined : { opacity: 0, visibility: "hidden" }}
-      >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/decoration/decoration/right-bottom-decoration.png" alt="" className={CORNER_DECO_CLASS} />
-      </div>
-      <div
-        className={`decor-bottom pointer-events-none absolute bottom-0 left-0 right-0 z-[3] md:hidden${decorClass}`}
-        style={decorVisible ? undefined : { opacity: 0, visibility: "hidden" }}
-      >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/decoration/decoration/bottom-center-decoration.png" alt="" className="block h-auto w-full" />
-      </div>
-    </>
   )
 }
 
@@ -288,46 +125,14 @@ function ProposalIntroSection() {
         </p>
       </div>
 
-      {/* Groom name */}
-      <div className="mt-2 w-full md:mt-3">
-        <h1
-          className="w-full leading-none"
-          style={{
-            ...hps,
-            fontSize: "clamp(52px, 14vw, 72px)",
-            color: ACCENT,
-            fontWeight: 400,
-            letterSpacing: "0.04em",
-            textTransform: "capitalize",
-          }}
-        >
-          {groomNickname}
-        </h1>
-      </div>
-
-      <div className="my-2 flex w-full items-center justify-center gap-2 md:my-3">
-        <DottedRule compact />
-        <span className="shrink-0 text-[13px] md:text-[16px]" style={{ ...smg, color: TEXT }}>
-          and
-        </span>
-        <DottedRule compact />
-      </div>
-
-      {/* Bride name */}
-      <div className="w-full">
-        <h1
-          className="w-full leading-none"
-          style={{
-            ...hps,
-            fontSize: "clamp(52px, 14vw, 72px)",
-            color: ACCENT,
-            fontWeight: 400,
-            letterSpacing: "0.04em",
-            textTransform: "capitalize",
-          }}
-        >
-          {brideNickname}
-        </h1>
+      {/* Couple names */}
+      <div className="mt-4 w-full md:mt-5">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={encodeURI(COUPLE_NAME_IMAGE)}
+          alt={`${groomNickname} and ${brideNickname}`}
+          className="mx-auto h-auto w-full max-w-[200px] md:max-w-[270px]"
+        />
       </div>
 
       <p className="w-full text-[12px] leading-[1.65] md:text-[14px] md:leading-[1.75]" style={{ ...smg, color: TEXT }}>
@@ -476,15 +281,6 @@ function ProposalAskSection({
       )}
 
       <div className="relative pt-0 sm:border-t sm:border-motif-deep/10 sm:pt-10">
-        <span
-          aria-hidden
-          className="pointer-events-none absolute right-0 bottom-8 h-56 w-56 rounded-full opacity-35 blur-3xl sm:bottom-12 sm:h-72 sm:w-72"
-          style={{
-            background:
-              "radial-gradient(circle, color-mix(in srgb, var(--color-motif-soft) 55%, transparent), transparent)",
-          }}
-        />
-
         <div className="relative flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between sm:gap-6 md:gap-10 mt-10">
           <div className="flex flex-row items-stretch justify-between gap-3 sm:contents">
             {/* Question + quote */}
@@ -551,7 +347,7 @@ function ProposalAskSection({
             >
               <div className="relative h-full w-full sm:h-auto sm:aspect-[3/4] sm:translate-y-4 md:translate-y-6">
                 <Image
-                  src="/attireGuide/character.png"
+                  src="/Details/guestimage.png"
                   alt=""
                   fill
                   className="object-contain object-[right_center] drop-shadow-[0_20px_48px_rgba(42,37,32,0.12)] sm:object-bottom"
@@ -671,15 +467,19 @@ export function ProposalPage({ role }: ProposalPageProps) {
   }
 
   const roleSingular = getRoleSingular(role.title)
+  const enableDecor = process.env.NEXT_PUBLIC_ENABLE_DECOR !== "false"
 
   return (
-    <div
-      className="relative isolate flex min-h-screen select-none flex-col items-center justify-center overflow-hidden px-3 py-8 sm:px-6 sm:py-16"
-      style={{ background: "var(--color-motif-cream)" }}
-    >
-      {!isReady && <LoadingScreen onComplete={handleLoadingComplete} />}
+    <div className="relative isolate flex min-h-screen select-none flex-col items-center justify-center overflow-hidden px-3 py-8 sm:px-6 sm:py-16">
+      {enableDecor && (
+        <div className="pointer-events-none fixed inset-0 z-0">
+          <Suspense fallback={<div className="h-full w-full bg-gradient-to-b from-primary/10 to-secondary/5" />}>
+            <Silk speed={5} scale={1.1} color="#0D1D3F" noiseIntensity={0.8} rotation={0.3} />
+          </Suspense>
+        </div>
+      )}
 
-      <ProposalBackdrop decorVisible={isReady} />
+      {!isReady && <LoadingScreen onComplete={handleLoadingComplete} />}
 
       <motion.div
         initial={{ opacity: 0, y: 24 }}
@@ -941,141 +741,6 @@ export function ProposalPage({ role }: ProposalPageProps) {
           )}
         </AnimatePresence>
       </motion.div>
-
-      <style jsx>{`
-        .proposal-base {
-          background: ${PROPOSAL_BACKGROUND};
-        }
-
-        .proposal-wash {
-          background:
-            radial-gradient(
-              ellipse 120% 80% at 50% 0%,
-              #FFFFFF 0%,
-              color-mix(in srgb, var(--color-motif-cream) 92%, white) 55%,
-              var(--color-motif-cream) 100%
-            ),
-            linear-gradient(
-              180deg,
-              var(--color-motif-cream) 0%,
-              color-mix(in srgb, var(--color-motif-silver) 35%, var(--color-motif-cream)) 100%
-            );
-        }
-
-        .decor-corner,
-        .decor-bottom {
-          opacity: 0;
-          will-change: transform, opacity;
-        }
-
-        .decor-top-left {
-          transform: translate(-12%, -12%);
-          transition:
-            opacity 1.35s cubic-bezier(0.16, 1, 0.3, 1) 0.06s,
-            transform 1.65s cubic-bezier(0.16, 1, 0.3, 1) 0.06s;
-        }
-
-        .decor-top-right {
-          transform: translate(12%, -12%);
-          transition:
-            opacity 1.35s cubic-bezier(0.16, 1, 0.3, 1) 0.14s,
-            transform 1.65s cubic-bezier(0.16, 1, 0.3, 1) 0.14s;
-        }
-
-        .decor-bottom-left {
-          transform: translate(-12%, 12%);
-          transition:
-            opacity 1.35s cubic-bezier(0.16, 1, 0.3, 1) 0.22s,
-            transform 1.65s cubic-bezier(0.16, 1, 0.3, 1) 0.22s;
-        }
-
-        .decor-bottom-right {
-          transform: translate(12%, 12%);
-          transition:
-            opacity 1.35s cubic-bezier(0.16, 1, 0.3, 1) 0.30s,
-            transform 1.65s cubic-bezier(0.16, 1, 0.3, 1) 0.30s;
-        }
-
-        .decor-bottom {
-          transform: translateY(28%);
-          transition:
-            opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.38s,
-            transform 1.55s cubic-bezier(0.16, 1, 0.3, 1) 0.38s;
-        }
-
-        .decor-corner.decor-visible,
-        .decor-bottom.decor-visible {
-          opacity: 1;
-          transform: translate(0, 0);
-        }
-
-        .particle-field-visible {
-          opacity: 1;
-        }
-
-        .particle-gradient {
-          position: absolute;
-          inset: -20%;
-          background:
-            radial-gradient(circle at 14% 18%, color-mix(in srgb, var(--color-motif-yellow) 14%, transparent) 0%, transparent 40%),
-            radial-gradient(circle at 86% 14%, color-mix(in srgb, var(--color-motif-soft) 18%, transparent) 0%, transparent 38%),
-            radial-gradient(circle at 78% 82%, color-mix(in srgb, var(--color-motif-accent) 14%, transparent) 0%, transparent 42%),
-            radial-gradient(circle at 20% 78%, color-mix(in srgb, var(--color-motif-silver) 20%, transparent) 0%, transparent 38%),
-            radial-gradient(circle at 50% 50%, color-mix(in srgb, var(--color-motif-cream) 22%, transparent) 0%, transparent 52%);
-          animation: gradientBreath 22s ease-in-out infinite alternate;
-        }
-
-        .particle-orb,
-        .particle-spark {
-          position: absolute;
-          border-radius: 9999px;
-          will-change: transform, opacity;
-          animation-name: particleDrift;
-          animation-timing-function: ease-in-out;
-          animation-iteration-count: infinite;
-          animation-direction: alternate;
-        }
-
-        .particle-orb {
-          filter: blur(38px);
-          transform: translate3d(-50%, -50%, 0);
-        }
-
-        .particle-spark {
-          transform: translate3d(-50%, -50%, 0);
-          box-shadow: 0 0 6px color-mix(in srgb, currentColor 35%, transparent);
-          animation-name: particleDrift, particleTwinkleOpacity;
-        }
-
-        @keyframes particleTwinkleOpacity {
-          0%, 100% { opacity: 0.12; }
-          50% { opacity: 0.45; }
-        }
-
-        @keyframes gradientBreath {
-          0% { transform: scale(1) translate3d(0, 0, 0); }
-          100% { transform: scale(1.05) translate3d(0, -1%, 0); }
-        }
-
-        @keyframes particleDrift {
-          0% { transform: translate3d(calc(-50% + 0px), calc(-50% + 0px), 0); }
-          100% {
-            transform: translate3d(
-              calc(-50% + var(--drift-x, 12px)),
-              calc(-50% + var(--drift-y, -18px)),
-              0
-            );
-          }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-          .particle-gradient,
-          .particle-orb,
-          .particle-spark {
-            animation: none !important;
-          }
-        }
-      `}</style>
     </div>
   )
 }
