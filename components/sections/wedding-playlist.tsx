@@ -45,12 +45,19 @@ declare global {
 let cachedSpotifyIframeApi: SpotifyIframeApi | null = null
 const spotifyApiReadyQueue: Array<(api: SpotifyIframeApi) => void> = []
 
-function getSpotifyUri(spotifyUrl: string): string {
-  const match = spotifyUrl.match(
-    /open\.spotify\.com\/(playlist|album|track|episode)\/([^/?]+)/
+function getSpotifyUri(url: string): string {
+  const match = url.match(
+    /open\.spotify\.com\/(?:embed\/)?(playlist|album|track|episode)\/([^/?&#]+)/
   )
-  if (!match) return spotifyUrl
+  if (!match) return url
   return `spotify:${match[1]}:${match[2]}`
+}
+
+function getSpotifyOpenUrl(url: string): string {
+  const uri = getSpotifyUri(url)
+  const match = uri.match(/^spotify:(playlist|album|track|episode):(.+)$/)
+  if (!match) return url
+  return `https://open.spotify.com/${match[1]}/${match[2]}`
 }
 
 function loadSpotifyIframeApi(onReady: (api: SpotifyIframeApi) => void) {
@@ -106,8 +113,9 @@ const ct = {
 
 export function WeddingPlaylist() {
   const siteConfig = useSiteConfig()
-  const { title, subtitle, playlistName, spotifyUrl } = siteConfig.playlist
+  const { title, subtitle, playlistName, spotifyUrl, embedUrl } = siteConfig.playlist
   const spotifyUri = getSpotifyUri(spotifyUrl)
+  const spotifyOpenUrl = getSpotifyOpenUrl(spotifyUrl)
   const embedContainerRef = useRef<HTMLDivElement>(null)
   const controllerRef = useRef<SpotifyEmbedController | null>(null)
   const playbackStateRef = useRef<"playing" | "paused">("paused")
@@ -160,7 +168,24 @@ export function WeddingPlaylist() {
 
     loadSpotifyIframeApi(initController)
 
+    const fallbackTimeout = window.setTimeout(() => {
+      const el = embedContainerRef.current
+      if (!mounted || !el || el.querySelector("iframe")) return
+
+      const iframe = document.createElement("iframe")
+      iframe.src = embedUrl
+      iframe.title = `${playlistName} — Spotify playlist`
+      iframe.width = "100%"
+      iframe.height = "352"
+      iframe.allow =
+        "autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+      iframe.loading = "lazy"
+      iframe.className = "border-0"
+      el.appendChild(iframe)
+    }, 3000)
+
     return () => {
+      window.clearTimeout(fallbackTimeout)
       mounted = false
       if (playbackStateRef.current === "playing") {
         resumeMusic()
@@ -169,7 +194,7 @@ export function WeddingPlaylist() {
       controllerRef.current?.destroy()
       controllerRef.current = null
     }
-  }, [pauseMusic, resumeMusic, spotifyUri])
+  }, [embedUrl, pauseMusic, playlistName, resumeMusic, spotifyUri])
 
   return (
     <Section id="playlist" className="relative overflow-hidden bg-transparent py-12 sm:py-16 md:py-20">
@@ -249,7 +274,7 @@ export function WeddingPlaylist() {
 
             {/* Open in Spotify */}
             <a
-              href={spotifyUrl}
+              href={spotifyOpenUrl}
               target="_blank"
               rel="noopener noreferrer"
               className={`group inline-flex items-center gap-2 sm:gap-2.5 px-6 sm:px-8 py-2.5 sm:py-3 rounded-full ${ct.btn} shadow-md transition-all duration-300 hover:scale-105 hover:shadow-lg active:scale-95`}

@@ -53,15 +53,15 @@ export const siteConfig = {
   giftRegistry: {
     QR_1:{
     id: "BPI",
-    src: "/monogram/BPI.png",
+    src: "/QR/pleaseProvideQR.png",
     label: "BPI",
-    accountNumber: "TE*I NI***E A GU******O",
+    accountNumber: "Please Provide",
     },
     QR_2:{
     id: "Zelle",
-    src: "/monogram/Zelle.png",
+    src: "/QR/pleaseProvideQR.png",
     label: "Zelle",
-    accountNumber: "Patrick: xxx-xxx-0009",
+    accountNumber: "Please Provide",
     }
   },
   ceremony: {
@@ -137,7 +137,7 @@ Now, as they prepare to say yes before God and the people they love most, Cather
     playlistName: "Mia & Jov Wedding",
     embedUrl:
       "https://open.spotify.com/embed/playlist/3deLHBokMdDrepIwHi85Ie?utm_source=generator",
-    spotifyUrl: "https://open.spotify.com/embed/playlist/3deLHBokMdDrepIwHi85Ie",
+    spotifyUrl: "https://open.spotify.com/playlist/3deLHBokMdDrepIwHi85Ie",
   },
   snapShare: {
     googleDriveLink:
