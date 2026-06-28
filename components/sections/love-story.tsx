@@ -31,7 +31,7 @@ export function LoveStory() {
         <h1
            className="leading-none"
            style={{
-            fontFamily: "var(--font-cheque), cursive",
+            fontFamily: "var(--font-brittany), cursive",
              fontSize: "clamp(2.15rem, 9vw, 4.75rem)",
              color: 'var(--color-motif-deep)',
              letterSpacing: "0.04em",
@@ -44,7 +44,7 @@ export function LoveStory() {
           className="text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl tracking-[0.14em] sm:tracking-[0.18em] font-normal leading-snug mb-1 text-black max-w-4xl mx-auto mt-4"
           style={bodyFont}
         >
-        With full hearts, we invite you to share in one of the most beautiful and meaningful moments of our lives.
+        With grateful hearts, we warmly invite you to share in one of the most meaningful and unforgettable days of our lives as we celebrate our wedding on December 5, 2026.
         </p>
       </div>
 
@@ -52,11 +52,12 @@ export function LoveStory() {
         theme="light"
         layout="image-left"
         isFirst={true}
-        imageSrc="/mobile-background/couple (2).webp"
+        title="Our Love Story"
+        imageSrc="/mobile-background/couple (8).png"
         text={
           <>
             <p>
-            Our love story has not always been simple, but it has always been real. It has been built through years of friendship, patience, prayers, tears, forgiveness, and choosing each other again and again. As two women who found love in one another, we know that our journey may not be understood by everyone in the same way. But in our hearts, we believe that a love that is honest, faithful, kind, and pure is never something to be ashamed of; it is something to be grateful for.
+            Every love story is beautifully unique, and ours has been a journey filled with countless moments that have shaped who we are today. Through seasons of joy and challenges, laughter and tears, growth and understanding, we have learned that love is not simply found—it is nurtured through trust, patience, forgiveness, and the daily choice to stand beside one another.
             </p>
           </>
         }
@@ -65,11 +66,12 @@ export function LoveStory() {
       <StorySection
         theme="dark"
         layout="image-right"
-        imageSrc="/mobile-background/couple (9).webp"
+        title="Our Faith"
+        imageSrc="/mobile-background/couple (11).png"
         text={
           <>
             <p>
-            We trust in God&apos;s love. A love that does not turn away. A love that listens, heals, forgives, and embraces. A love that teaches us not to judge, but to understand; not to hate, but to show kindness; not to close our hearts, but to make room for grace.
+            As we prepare to begin this new chapter, we place our future in God's loving hands. His grace has guided us through every season, teaching us the value of compassion, humility, and unconditional love. We pray that our marriage will always be rooted in faith, strengthened by hope, and sustained by His endless blessings.
             </p>
           </>
         }
@@ -78,11 +80,12 @@ export function LoveStory() {
       <StorySection
         theme="light"
         layout="image-left"
-        imageSrc="/mobile-background/couple (3).webp"
+        title="Our Promise"
+        imageSrc="/mobile-background/couple (13).png"
         text={
           <>
             <p>
-            As we begin this new chapter together, we carry with us the hope that our union will be surrounded not by judgment, but by love. Not by fear, but by faith. Not by doubt, but by the quiet belief that God sees our hearts and knows the sincerity of our love.
+            Marriage is more than a celebration—it is a lifelong promise. It is choosing each other every day, embracing life's joys and challenges together, and building a home filled with love, respect, kindness, and unwavering commitment.
             </p>
           </>
         }
@@ -91,11 +94,12 @@ export function LoveStory() {
       <StorySection
         theme="dark"
         layout="image-right"
-        imageSrc="/mobile-background/couple (13).webp"
+        title="Our Gratitude"
+        imageSrc="/mobile-background/couple (9).png"
         text={
           <>
             <p>
-            To our families and friends, thank you for walking with us in your own way. Thank you for the love you have given, the prayers you have whispered, the forgiveness you have offered, and the moments you have shared with us. Your presence means more than words can ever express.
+            To our beloved family and dear friends, thank you for being part of our journey. Your love, encouragement, prayers, and presence have helped shape the people we are today. Having you celebrate this special day with us is one of the greatest gifts we could ever receive.
             </p>
           </>
         }
@@ -105,18 +109,19 @@ export function LoveStory() {
         theme="light"
         layout="image-left"
         isLast={true}
-        imageSrc="/mobile-background/couple (8).webp"
+        title="Our Celebration"
+        imageSrc="/mobile-background/couple (3).png"
         text={
           <>
             <p className="mb-4">
-            On this day, we do not only celebrate a wedding. We celebrate love that endured, faith that remained, and grace that carried us here.
+            Today is more than the beginning of our married life. It is a celebration of love that has grown stronger with time, of dreams becoming reality, and of a future we look forward to sharing together.
             </p>
             <p className="mb-4">
-            As we say yes to forever, we humbly ask for your blessings, your prayers, and your open hearts as we continue our journey together with God&apos;s love as our guide, forgiveness as our strength, and love as our promise.
+            As we say "I do," we humbly ask for your prayers, your blessings, and your continued support as we begin this beautiful journey as husband and wife. May our home always be filled with faith, hope, laughter, and a love that grows deeper with each passing day.
             </p>
             <p>
-            With all our love and gratitude,<br />
-            Jov &amp; Mia
+            With all our love and heartfelt gratitude,
+            Novie &amp; Biboy
             </p>
           </>
         }

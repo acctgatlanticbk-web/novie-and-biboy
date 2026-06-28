@@ -10,6 +10,7 @@ import fs from "fs"
 import path from "path"
 
 const GALLERY_FOLDERS = ["desktop-background", "mobile-background"] as const
+const GALLERY_IMAGE_PATTERN = /\.(webp|png|jpe?g)$/i
 const OUT_FILE = path.resolve(process.cwd(), "content/gallery-images.ts")
 
 function sortByNumericSuffix(paths: string[]): string[] {
@@ -29,7 +30,7 @@ function collectGalleryPaths(): string[] {
 
     const files = fs
       .readdirSync(dir)
-      .filter((file) => /\.webp$/i.test(file))
+      .filter((file) => GALLERY_IMAGE_PATTERN.test(file))
       .map((file) => `/${folder}/${file}`)
 
     images.push(...files)

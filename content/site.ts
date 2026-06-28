@@ -5,11 +5,11 @@ import {
 
 export const siteConfig = {
   couple: {
-    bride: "Mia Lyn Reyes ", //Noenyl Bryle M. Gonzaga
-    brideNickname: "Mia", //Ltryl
-    groom: "Jovelyn Lao", //Ltryl B. Benitez
-    groomNickname: "Jov",
-    monogram:"/monogram/monog.png" ,//Ltryl
+    bride: "Novie Marie T Barcenilla", //Noenyl Bryle M. Gonzaga
+    brideNickname: "Novie", //Ltryl
+    groom: "Jose Lizito T. Villamor Jr.", //Ltryl B. Benitez
+    groomNickname: "Biboy",
+    monogram:"/monogram/monogram.png" ,//Ltryl
     backgroundMusic:"/background_music/Dalangin by Earl Agustin (Lyrics).mp3"
   },
   googleAPI:{
@@ -25,9 +25,9 @@ export const siteConfig = {
     googleShare: "https://docs.google.com/spreadsheets/d/1MXqoVM4S4hxyaAu8SR4SrPD7xIbWH_1nbufJiMah26s/edit?usp=sharing", 
   },
   wedding: {
-    date: "October 4, 2026",
-    time: "4:00 PM",
-    venue: "Ville Sommet Tagaytay",
+    date: "December 5, 2026",
+    time: "2:00 PM",
+    venue: "Shrine of Our Lady Of Perpetual Help, Bacolod City",
     tagline: "are getting married!",
     theme: "Our wedding palette is inspired by timeless elegance and warmth.Motif Colors: Champagne Gold, Soft Beige, Warm Soft Brown",
     motif: "#BBCED5, #B9C3A8, #F3D8C5, #D1C4D4, #ECD8BA, #F4E8D8, #E1DCCF",
@@ -40,13 +40,13 @@ export const siteConfig = {
   },
   details: {
     rsvp: {
-      deadline: "October 3, 2026",
-      contact: "Mia Lyn Reyes",
-      phone: "+63 956 482 5255",
+      deadline: "October 30, 2026",
+      contact: "Novie Marie T. Barcenilla",
+      phone: "+63 9626921672",
     },
   },
   contact: {
-    bridePhone: "+63 956 482 5255",
+    bridePhone: "+63 9626921672",
     groomPhone: "",
     email: "",
   },
@@ -65,24 +65,24 @@ export const siteConfig = {
     }
   },
   ceremony: {
-    location: "Ville Sommet Tagaytay",
-    venue: "Tagaytay-Nasugbu Hiway, Cavite, Philippines, 4120",
-    map: "https://maps.app.goo.gl/7yPpZCRixiNVjauBA",
-    date: "October 4, 2026",
-    day: "Sunday",
-    time: "4:00 PM",
+    location: "Shrine of Our Lady Of Perpetual Help, Bacolod City",
+    venue: "BS Aquino Dr, Bacolod, 6100 Negros Occidental",
+    map: "https://maps.app.goo.gl/Hz3Tus5dTgy3NiU5A",
+    date: "December 5, 2026",
+    day: "Saturday",
+    time: "2:00 PM",
     entourageTime: "3:00 PM",
     guestsTime: "3:30 PM",
     image: ["/Details/ceremony1.png", "/Details/ceremony2.png"],
   },
   reception: {
-    location: "Ville Sommet Tagaytay",
-    venue: "Tagaytay-Nasugbu Hiway, Cavite, Philippines, 4120",
-    map: "https://maps.app.goo.gl/7yPpZCRixiNVjauBA",
-    date: "October 4, 2026",
+    location: "Sugarland Hotel, Araneta St., Araneta Avenue, Bacolod City",
+    venue: "Araneta Street, Araneta Ave, Bacolod, 6100 Negros Occidental",
+    map: "https://maps.app.goo.gl/hGQABwu3CfZVK88z9",
+    date: "December 5, 2026",
     day: "Sunday",
     time: "6:00 PM",
-    image: ["/Details/ceremony1.png", "/Details/ceremony2.png"],
+    image: ["/Details/reception1.png", "/Details/reception2.png"],
   },
   dressCode: {
       theme: "SEMI-FORMAL",
@@ -136,14 +136,14 @@ Now, as they prepare to say yes before God and the people they love most, Cather
     subtitle: "Songs that have been part of our journey together",
     playlistName: "Mia & Jov Wedding",
     embedUrl:
-      "https://open.spotify.com/embed/playlist/2DlYKMjLkwDT4HbXtzRMl0?utm_source=generator",
-    spotifyUrl: "https://open.spotify.com/playlist/2DlYKMjLkwDT4HbXtzRMl0",
+      "https://open.spotify.com/embed/playlist/3deLHBokMdDrepIwHi85Ie?utm_source=generator",
+    spotifyUrl: "https://open.spotify.com/embed/playlist/3deLHBokMdDrepIwHi85Ie",
   },
   snapShare: {
     googleDriveLink:
       "https://drive.google.com/drive/folders/1fH_NKSGFyW1DupwtElpS-cZIldXJ3280?usp=sharing",
     albumQR: "/QR/AlbumQR.png",
-    hashtag: ["#MiaAndJovWedding"],
+    hashtag: ["#NovieAndBiboyWedding"],
     instructions: "Please scan this QR Code and upload the photos and videos you have taken during our wedding reception. We are delighted to see your snaps too!",
   },
 }

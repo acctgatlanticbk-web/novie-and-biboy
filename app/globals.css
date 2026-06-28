@@ -110,15 +110,18 @@
   --font-serif: "Great Vibes", "Great Vibes Fallback";
 
   /* ─── Motif palette — edit here, affects every component ─── */
-  --color-motif-cream:   #F8ECDA;
-  --color-motif-yellow:  #FDD461;
-
-  --color-motif-soft:    #FBAFB5;
-  --color-motif-accent:  #F95483;
-
-  --color-motif-deep:    #F95483;
-  --color-motif-medium:  #909E79;
-  --color-motif-silver:  #F4DCBB;
+  /* Base */
+  --color-motif-cream:   #F8F5F1; /* Soft Ivory (light background) */
+  /* Gold */
+  --color-motif-yellow:  #D2B28C; /* Champagne Gold */
+  /* Secondary */
+  --color-motif-soft:    #E7DDD2; /* Light Champagne Tint */
+  --color-motif-accent:  #A08059; /* Antique Gold */
+  /* Primary */
+  --color-motif-deep:    #0D1D3F; /* Midnight Navy */
+  --color-motif-medium:  #223D5A; /* Dusty Navy */
+  /* Neutral */
+  --color-motif-silver:  #D8D3CC; /* Warm Silver */
   /* ─────────────────────────────────────────────────────────── */
   --font-imperial-script: "Imperial Script", cursive;
   --color-background: var(--background);

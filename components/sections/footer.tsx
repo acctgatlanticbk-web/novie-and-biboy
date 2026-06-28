@@ -83,7 +83,7 @@ export function Footer() {
 
   const brideNickname = siteConfig.couple.brideNickname
   const groomNickname = siteConfig.couple.groomNickname
-  const coupleDisplayName = `${groomNickname} & ${brideNickname}`
+  const coupleDisplayName = `${brideNickname} & ${groomNickname}`
 
   const [currentQuoteIndex, setCurrentQuoteIndex] = useState(0)
   const [displayedText, setDisplayedText] = useState("")
@@ -164,16 +164,16 @@ export function Footer() {
       <footer className="relative z-10 mt-12 sm:mt-16">
         {/* Corner decorations */}
         <div className="absolute left-0 top-0 z-0 pointer-events-none opacity-25">
-          <Image src="/decoration/flower-decoration-left-bottom-corner2.png" alt="" width={300} height={300} className="w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] scale-y-[-1]" priority={false} />
+          <Image src="/decoration/decoration/left-bottom-decoration-new.png" alt="" width={300} height={300} className="w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] scale-y-[-1]" priority={false} />
         </div>
         <div className="absolute right-0 top-0 z-0 pointer-events-none opacity-25">
-          <Image src="/decoration/flower-decoration-left-bottom-corner2.png" alt="" width={300} height={300} className="w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] scale-x-[-1] scale-y-[-1]" priority={false} />
+          <Image src="/decoration/decoration/left-bottom-decoration-new.png" alt="" width={300} height={300} className="w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] scale-x-[-1] scale-y-[-1]" priority={false} />
         </div>
         <div className="absolute left-0 bottom-0 z-0 pointer-events-none opacity-25">
-          <Image src="/decoration/flower-decoration-left-bottom-corner2.png" alt="" width={300} height={300} className="w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px]" priority={false} />
+          <Image src="/decoration/decoration/left-bottom-decoration-new.png" alt="" width={300} height={300} className="w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px]" priority={false} />
         </div>
         <div className="absolute right-0 bottom-0 z-0 pointer-events-none opacity-25">
-          <Image src="/decoration/flower-decoration-left-bottom-corner2.png" alt="" width={300} height={300} className="w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] scale-x-[-1]" priority={false} />
+          <Image src="/decoration/decoration/left-bottom-decoration-new.png" alt="" width={300} height={300} className="w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] scale-x-[-1]" priority={false} />
         </div>
 
         {/* Monogram */}
@@ -194,7 +194,7 @@ export function Footer() {
             <h2
               className="leading-none mb-1.5 sm:mb-2"
               style={{
-                fontFamily: "'HelloParisSans', serif",
+                fontFamily: "var(--font-brittany), cursive",
                 fontSize: "clamp(1.75rem, 7vw, 3.25rem)",
                 color: palette.medium,
                 letterSpacing: "0.01em",

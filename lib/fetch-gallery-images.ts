@@ -5,6 +5,7 @@ import { PROJECT_PREFIX } from "@/lib/cloudinary"
 import { galleryFallbackImages } from "@/content/gallery-images"
 
 const GALLERY_FOLDERS = ["desktop-background", "mobile-background"] as const
+const GALLERY_IMAGE_PATTERN = /\.(webp|png|jpe?g)$/i
 
 function sortByNumericSuffix(paths: string[]): string[] {
   return [...paths].sort((a, b) => {
@@ -23,7 +24,7 @@ function readGalleryImagesFromPublic(): string[] {
 
     const files = fs
       .readdirSync(dir)
-      .filter((file) => /\.webp$/i.test(file))
+      .filter((file) => GALLERY_IMAGE_PATTERN.test(file))
       .map((file) => `/${folder}/${file}`)
 
     images.push(...sortByNumericSuffix(files))

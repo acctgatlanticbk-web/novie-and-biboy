@@ -22,15 +22,16 @@ export const revalidate = 3600
 export default async function GalleryPage() {
   const siteConfig = await getSiteConfig()
   const allImages = await fetchGalleryImages()
-  const images = allImages.map((src) => ({
-    src,
-    category: src.startsWith("/desktop-background/")
-      ? ("desktop" as const)
-      : ("mobile" as const),
-    width: 1200,
-    height: 900,
-    orientation: "landscape" as const,
-  }))
+  const images = allImages.map((src) => {
+    const isDesktop = src.startsWith("/desktop-background/")
+    return {
+      src,
+      category: isDesktop ? ("desktop" as const) : ("mobile" as const),
+      width: isDesktop ? 1600 : 900,
+      height: isDesktop ? 900 : 1200,
+      orientation: (isDesktop ? "landscape" : "portrait") as const,
+    }
+  })
 
   return (
     <main className="min-h-screen relative overflow-hidden bg-motif-cream">

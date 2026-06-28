@@ -224,23 +224,23 @@ export function BookOfGuests() {
       {/* Corner florals — behind content */}
       <div className="decor-corner decor-top-left decor-visible pointer-events-none absolute left-0 top-0 z-[1]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/decoration/decoration/left-top-decoration.png" alt="" className="block h-auto w-auto max-w-[130px] sm:max-w-[160px] md:max-w-[210px] lg:max-w-[260px]" />
+        <img src="/decoration/decoration/left-top-decoration-new.png" alt="" className="block h-auto w-auto max-w-[130px] sm:max-w-[160px] md:max-w-[210px] lg:max-w-[260px]" />
       </div>
       <div className="decor-corner decor-top-right decor-visible pointer-events-none absolute right-0 top-0 z-[1]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/decoration/decoration/right-top-decoration.png" alt="" className="block h-auto w-auto max-w-[130px] sm:max-w-[160px] md:max-w-[210px] lg:max-w-[260px]" />
+        <img src="/decoration/decoration/right-top-decoration-new.png" alt="" className="block h-auto w-auto max-w-[130px] sm:max-w-[160px] md:max-w-[210px] lg:max-w-[260px]" />
       </div>
       <div className="decor-corner decor-bottom-left decor-visible pointer-events-none absolute bottom-0 left-0 z-[1]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/decoration/decoration/left-bottom-decoration.png" alt="" className="block h-auto w-auto max-w-[130px] sm:max-w-[160px] md:max-w-[210px] lg:max-w-[260px]" />
+        <img src="/decoration/decoration/left-bottom-decoration-new.png" alt="" className="block h-auto w-auto max-w-[130px] sm:max-w-[160px] md:max-w-[210px] lg:max-w-[260px]" />
       </div>
       <div className="decor-corner decor-bottom-right decor-visible pointer-events-none absolute bottom-0 right-0 z-[1]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/decoration/decoration/right-bottom-decoration.png" alt="" className="block h-auto w-auto max-w-[130px] sm:max-w-[160px] md:max-w-[210px] lg:max-w-[260px]" />
+        <img src="/decoration/decoration/right-bottom-decoration-new.png" alt="" className="block h-auto w-auto max-w-[130px] sm:max-w-[160px] md:max-w-[210px] lg:max-w-[260px]" />
       </div>
       <div className="decor-bottom decor-visible pointer-events-none absolute bottom-0 left-0 right-0 z-[1] md:hidden">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/decoration/decoration/bottom-center-decoration.png" alt="" className="block h-auto w-full" />
+        <img src="/decoration/decoration/bottom-center-decoration-new.png" alt="" className="block h-auto w-full" />
       </div>
 
       {/* Section Header */}

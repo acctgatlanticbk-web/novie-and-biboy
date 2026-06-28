@@ -180,7 +180,7 @@ export function Countdown() {
       <div className="pointer-events-none absolute left-0 top-0 z-0">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/decoration/decoration/left-top-decoration.png"
+          src="/decoration/decoration/left-top-decoration-new.png"
           alt=""
           className={CORNER_DECO_CLASS}
         />
@@ -188,15 +188,15 @@ export function Countdown() {
       <div className="pointer-events-none absolute right-0 top-0 z-0">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/decoration/decoration/right-top-decoration.png"
+          src="/decoration/decoration/right-top-decoration-new.png"
           alt=""
           className={CORNER_DECO_CLASS}
         />
       </div>
-      {/* <div className="pointer-events-none absolute bottom-0 left-0 z-0">
+      <div className="pointer-events-none absolute bottom-0 left-0 z-0">
 
         <img
-          src="/decoration/decoration/left-bottom-decoration.png"
+          src="/decoration/decoration/left-bottom-decoration-new.png"
           alt=""
           className={CORNER_DECO_CLASS}
         />
@@ -204,12 +204,19 @@ export function Countdown() {
       <div className="pointer-events-none absolute bottom-0 right-0 z-0">
 
         <img
-          src="/decoration/decoration/right-bottom-decoration.png"
+          src="/decoration/decoration/right-bottom-decoration-new.png"
           alt=""
           className={CORNER_DECO_CLASS}
         />
-      </div> */}
-      
+      </div>
+
+      <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-0 md:hidden">
+        <img
+          src="/decoration/decoration/bottom-center-decoration-new.png"
+          alt=""
+          className={CORNER_DECO_CLASS}
+        />
+      </div>
       {/* Monogram - centered at top */}
       <div className="relative flex justify-center pt-8 sm:pt-10 md:pt-12 mb-6 sm:mb-8 md:mb-10 z-10">
         <motion.div
