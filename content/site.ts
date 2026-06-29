@@ -10,7 +10,7 @@ export const siteConfig = {
     groom: "Jose Lizito T. Villamor Jr.", //Ltryl B. Benitez
     groomNickname: "Biboy",
     monogram:"/monogram/monogram.png" ,//Ltryl
-    backgroundMusic:"/background_music/Dalangin by Earl Agustin (Lyrics).mp3"
+    backgroundMusic:"/background_music/Ed Sheeran - Perfect (Lyrics).mp3"
   },
   googleAPI:{
     messageForm: "https://docs.google.com/forms/d/e/1FAIpQLSe8YjsI90KooCoh91eImnlIJINmJlTINKe6sT_PDPTdQPociA/formResponse",   //done
@@ -27,7 +27,7 @@ export const siteConfig = {
   wedding: {
     date: "December 5, 2026",
     time: "2:00 PM",
-    venue: "Shrine of Our Lady Of Perpetual Help, Bacolod City",
+    venue: "Redemptorist Church",
     tagline: "are getting married!",
     theme: "Our wedding palette is inspired by timeless elegance and warmth.Motif Colors: Champagne Gold, Soft Beige, Warm Soft Brown",
     motif: "#BBCED5, #B9C3A8, #F3D8C5, #D1C4D4, #ECD8BA, #F4E8D8, #E1DCCF",
@@ -65,8 +65,8 @@ export const siteConfig = {
     }
   },
   ceremony: {
-    location: "Shrine of Our Lady Of Perpetual Help, Bacolod City",
-    venue: "BS Aquino Dr, Bacolod, 6100 Negros Occidental",
+    location: "Redemptorist Church",
+    venue: "BS Aquino Drive, Brgy. 5, Bacolod City",
     map: "https://maps.app.goo.gl/Hz3Tus5dTgy3NiU5A",
     date: "December 5, 2026",
     day: "Saturday",
