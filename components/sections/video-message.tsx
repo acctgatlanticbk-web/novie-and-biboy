@@ -39,7 +39,7 @@ export function VideoMessage() {
       {/* Corner floral decorations — same as Welcome section */}
       <div className="absolute left-0 top-0 z-0 pointer-events-none">
         <Image
-          src="/decoration/flower-decoration-left-bottom-corner2.png"
+          src="/decoration/decoration/left-bottom-decoration-new.png"
           alt=""
           width={300}
           height={300}
@@ -49,7 +49,7 @@ export function VideoMessage() {
       </div>
       <div className="absolute right-0 top-0 z-0 pointer-events-none">
         <Image
-          src="/decoration/flower-decoration-left-bottom-corner2.png"
+          src="/decoration/decoration/left-bottom-decoration-new.png"
           alt=""
           width={300}
           height={300}
